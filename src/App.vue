@@ -1,6 +1,4 @@
 <template>
-  <header></header>
-
   <main>
     <vPostListVue />
   </main>
