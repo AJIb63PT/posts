@@ -179,12 +179,15 @@ export default {
       this.deletePostId = -1;
     },
     editPost() {
+      const editedPost = {
+        title: this.chengedTitle,
+        body: this.chengedBody,
+        userId: 1,
+        id: this.editPostId,
+      };
       fetch(`https://jsonplaceholder.typicode.com/posts/${this.editPostId}`, {
         method: "PATCH",
-        body: JSON.stringify({
-          title: this.chengedTitle,
-          body: this.chengedBody,
-        }),
+        body: JSON.stringify(editedPost),
         headers: {
           "Content-type": "application/json; charset=UTF-8",
         },
@@ -212,35 +215,25 @@ export default {
     },
     addSure() {
       this.addForm = !this.addForm;
+      const newPost = {
+        title: this.chengedTitle,
+        body: this.chengedBody,
+        userId: 1,
+        id: this.sortUp
+          ? this.postsList[this.postsList.length - 1].id + 1
+          : this.postsList[0].id + 1,
+      };
       fetch("https://jsonplaceholder.typicode.com/posts", {
         method: "POST",
-        body: JSON.stringify({
-          title: this.chengedTitle,
-          body: this.chengedBody,
-          userId: 1,
-          id:
-            this.postsList.reduce((prev, current) =>
-              +prev.id > +current.id ? prev.id : current.id
-            ) + 1,
-        }),
+        body: JSON.stringify(newPost),
         headers: {
           "Content-type": "application/json; charset=UTF-8",
         },
       }).then((response) => response.json());
 
       this.sortUp
-        ? this.postsList.push({
-            title: this.chengedTitle,
-            body: this.chengedBody,
-            userId: 1,
-            id: this.postsList[this.postsList.length - 1].id + 1,
-          })
-        : this.postsList.unshift({
-            title: this.chengedTitle,
-            body: this.chengedBody,
-            userId: 1,
-            id: this.postsList[0].id + 1,
-          });
+        ? this.postsList.push(newPost)
+        : this.postsList.unshift(newPost);
 
       this.chengedTitle = "";
       this.chengedBody = "";

@@ -8,7 +8,7 @@
       <h2>Содержание</h2>
       <h3 :title="post.body">
         {{ openFullState ? shortBody(post.body) : post.body }}
-        <button @click="openFull()">
+        <button @click="openFull()" v-if="post.body.length > 65">
           {{ openFullState ? shortText : longText }}
         </button>
       </h3>
