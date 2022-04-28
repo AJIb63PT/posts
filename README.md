@@ -1,8 +1,9 @@
+
+## GitHub Page
+https://ajib63pt.github.io/posts/
 # postlist
 
 This template should help get you started developing with Vue 3 in Vite.
-## GitHub Page
-https://ajib63pt.github.io/posts/
 
 ## Project Setup
 
@@ -22,4 +23,3 @@ npm run dev
 npm run build
 ```
 
-# posts List
